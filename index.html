@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jar of Love Notes 💌</title>
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to top right, #ffe6f0, #fff0f5);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  h1 {
+    color: #cc0066;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    padding: 0 10px;
+  }
+
+  .flip-card {
+    background-color: transparent;
+    width: 80vw;
+    max-width: 300px;
+    height: 80vw;
+    max-height: 350px;
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+  }
+
+  .flip-card-front img {
+    width: 70%;
+    max-width: 180px;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+    font-size: 1rem;
+    color: #800040;
+    line-height: 1.4;
+  }
+
+  .hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+    animation: float 10s linear infinite;
+  }
+
+  .heart:before,
+  .heart:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .heart:before {
+    top: -10px;
+    left: 0;
+  }
+
+  .heart:after {
+    top: 0;
+    left: -10px;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+  }
+</style>
+
+</head>
+<body>
+  <div class="hearts">
+    <div class="heart" style="left:10%; animation-delay:0s;"></div>
+    <div class="heart" style="left:30%; animation-delay:2s;"></div>
+    <div class="heart" style="left:50%; animation-delay:4s;"></div>
+    <div class="heart" style="left:70%; animation-delay:1s;"></div>
+    <div class="heart" style="left:90%; animation-delay:3s;"></div>
+  </div>
+
+  <h1>Jar of Love Notes 💌</h1>
+
+  <div class="flip-card" id="card" onclick="flipCard()">
+    <div class="flip-card-inner" id="cardInner">
+      <div class="flip-card-front">
+        <img src="hand-drawn-mason-jar-sketch-jar-with-lid-outline-doodle-illustration-isolated-on-white-vector.jpg" alt="Love Jar">
+      </div>
+      <div class="flip-card-back" id="noteBack">
+        Teri muskurahat se din shuru hota hai, aur usi pe khatam 💖
+      </div>
+    </div>
+  </div>
+
+  <audio autoplay loop>
+    <source src="song.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const notes = [
+      "Teri muskurahat se din shuru hota hai, aur usi pe khatam 💖",
+      "I don’t need a reason to smile… you’re enough. 😊",
+      "Tujh mein meri rooh ki shanti hai, aur dil ka sukoon bhi 🫶",
+      "You walked in, and every sad part of me walked out.",
+      "Mujhe sirf tera saath chahiye, baaki sab guzar jaayega ❤️",
+      "Every second with you feels like a whole new love story.",
+      "Tere bina sab kuch adhura lagta hai… sach bolu toh main bhi 😔",
+      "Just your voice is enough to change my entire mood.",
+      "Pyar likhne baitha tha, naam tera likh ke ruk gaya ✍️",
+      "You're not just a part of my life, you're my favorite chapter 📖",
+      "Tera haath pakad ke duniya bhool jaata hoon 🤝💕",
+      "I see home in your eyes.",
+      "Meri har dua mein bas tera naam hota hai 💫",
+      "If I ever lose you, I’d lose myself.",
+      "Tere saath waqt guzarta nahi… udh jaata hai ⏳❤️"
+    ];
+
+    function flipCard() {
+      const card = document.getElementById("card");
+      const cardInner = document.getElementById("cardInner");
+      const noteBack = document.getElementById("noteBack");
+
+      // Flip the card
+      card.classList.toggle("flipped");
+
+      // If flipped to back, update the text
+      if (card.classList.contains("flipped")) {
+        const newNote = notes[Math.floor(Math.random() * notes.length)];
+        noteBack.innerText = newNote;
+      }
+    }
+  </script>
+</body>
+</html>
